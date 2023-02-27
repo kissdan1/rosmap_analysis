@@ -30,11 +30,10 @@ joined_df = joined_df %>% mutate(visit = as.numeric(visit), mri_from_death_years
 cortical_areas = names(ros_mri_thickness)[-(38:40)]
 cortical_areas = cortical_areas[-(1:2)]
 cortical_areas = cortical_areas[-35]
+cortical_areas_scaled = as.list(paste0("scale(", cortical_areas, ")"))
 cortical_areas = substr(cortical_areas, start = 0, stop = (str_length(cortical_areas)-2))
 cortical_areas = gsub(x = cortical_areas, pattern = "r_", replacement = 'rh_')
 cortical_areas = gsub(x = cortical_areas, pattern = "l_", replacement = 'lh_')
-
-cortical_areas_scaled = as.list(paste0("scale(", cortical_areas, ")"))
 
 #Which cortical areas correlate most with gpath? 
 #Create a lm for each cortical area and compute statistics in list cortical_v_gpath_summaries
